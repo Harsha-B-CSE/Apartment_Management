@@ -44,7 +44,7 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Firebase
+# Firebase Configuration
 android/app/google-services.json
 lib/firebase_options.dart
 
@@ -57,9 +57,22 @@ android/key.properties
 *.jks
 *.keystore
 
-# Environment
+# Environment Files
 .env
 .env.*
 
-# Service Accounts
+# Firebase Admin SDK
 serviceAccountKey.json
+
+# Flutter Build
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# IDE
+.idea/
+.vscode/
+
+# macOS
+.DS_Store
