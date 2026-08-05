@@ -1,4 +1,4 @@
-# ApartmentApp – Upgraded SaaS Apartment Management System
+# ApartmentApp – SaaS Apartment Management System
 
 A Flutter + Firebase based Apartment Management System (AMS) designed for Android with multi-building SaaS support. The application enables apartment administrators and tenants to manage buildings, complaints, visitors, parking, services, and notifications through secure role-based access.
 
