@@ -1,78 +1,72 @@
-# Miscellaneous
+# ==========================
+# General
+# ==========================
 *.class
 *.log
 *.pyc
 *.swp
 .DS_Store
+.history
 .atom/
 .build/
 .buildlog/
-.history
 .svn/
 .swiftpm/
 migrate_working_dir/
 
-# IntelliJ related
+# ==========================
+# IntelliJ / Android Studio
+# ==========================
 *.iml
 *.ipr
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# VS Code (uncomment if you don't want to share workspace settings)
+# .vscode/
 
-# Flutter/Dart/Pub related
+# ==========================
+# Flutter / Dart
+# ==========================
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub/
+.pub-cache/
+build/
+coverage/
 **/doc/api/
 **/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins-dependencies
-.pub-cache/
-.pub/
-/build/
-/coverage/
 
-# Symbolication related
-app.*.symbols
+# Android build outputs
+/android/app/debug/
+/android/app/profile/
+/android/app/release/
 
-# Obfuscation related
-app.*.map.json
-
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
-
-# Firebase Configuration
+# ==========================
+# Firebase
+# ==========================
 android/app/google-services.json
 lib/firebase_options.dart
-
-# Firebase Logs
 firebase-debug.log
 firestore-debug.log
+serviceAccountKey.json
 
+# ==========================
 # Android Signing
+# ==========================
 android/key.properties
 *.jks
 *.keystore
 
-# Environment Files
+# ==========================
+# Environment Variables
+# ==========================
 .env
 .env.*
 
-# Firebase Admin SDK
-serviceAccountKey.json
-
-# Flutter Build
-build/
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-
-# IDE
-.idea/
-.vscode/
-
-# macOS
-.DS_Store
+# ==========================
+# Obfuscation / Symbols
+# ==========================
+app.*.symbols
+app.*.map.json
