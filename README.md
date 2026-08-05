@@ -1,12 +1,14 @@
-# ApartmentApp – SaaS Apartment Management System
+# 🏢 ApartmentApp – SaaS Apartment Management System
 
-A **Flutter + Firebase** based **Apartment Management System (AMS)** designed for **Android** with **multi-building SaaS support**. The application enables apartment administrators and tenants to manage apartments, complaints, visitors, parking, services, notifications, and more through secure role-based access.
+A **Flutter + Firebase** based **Apartment Management System (AMS)** designed for **Android** with **multi-building SaaS support**.
+
+The application enables apartment administrators and tenants to efficiently manage apartments, complaints, visitors, parking, service requests, notifications, and resident information through a secure role-based system.
 
 ---
 
 ## ✨ Features
 
-### 👨‍💼 Admin
+### 👨‍💼 Administrator
 
 - Dashboard
 - Building Management
@@ -15,61 +17,90 @@ A **Flutter + Firebase** based **Apartment Management System (AMS)** designed fo
 - Complaint Management
 - Visitor Management
 - Parking Management
-- Services Management
+- Service Management
 - Service Requests
 - Notifications
+- Audit Logs
+- Analytics
 - Profile Management
 
 ### 👨‍👩‍👧 Tenant
 
 - Dashboard
-- My Complaints
-- My Visitors
-- My Parking
+- Raise Complaints
 - Service Requests
+- Visitor Management
+- Parking Details
 - Notifications
 - Profile Management
 
 ---
 
-## 🛠 Technology Stack
+# 📱 Application Screenshots
 
-### Frontend
+## Login & Admin Dashboard
+
+<p align="center">
+<img src="screenshots/login_admin.png" width="900">
+</p>
+
+---
+
+## Audit Logs & Tenant Dashboard
+
+<p align="center">
+<img src="screenshots/audit_tenant.png" width="900">
+</p>
+
+---
+
+## Service Requests & Complaints
+
+<p align="center">
+<img src="screenshots/requests_complaints.png" width="900">
+</p>
+
+---
+
+## Database ER Diagram
+
+<p align="center">
+<img src="screenshots/er_diagram.png" width="700">
+</p>
+
+---
+
+# 🚀 Technology Stack
+
+## Frontend
 
 - Flutter
 - Dart
 
-### Backend
+## Backend
 
 - Firebase Authentication
 - Cloud Firestore
 - Firebase Cloud Messaging (FCM)
 - Firebase App Check
 
-### Local Storage
+## Local Storage
 
 - Hive
 
 ---
 
-## 🚀 Key Features
-
-### Android Optimized
-
-- Android-only application
-- Material Design UI
-- Responsive Layout
-- Portrait Orientation Lock
+# ⚡ Major Features
 
 ### Performance
 
-- Hive Local Cache
 - Offline Support
-- Retry Mechanism
+- Hive Local Cache
 - Firestore Pagination
+- Retry Mechanism
 - Dashboard Cache
 - Shimmer Loading
-- Responsive Navigation
+- Responsive UI
 
 ### Security
 
@@ -78,18 +109,15 @@ A **Flutter + Firebase** based **Apartment Management System (AMS)** designed fo
 - Firestore Security Rules
 - Role-Based Access Control
 - Secure Token Storage
-- Login Attempt Lockout
-- Password Reset Rate Limiting
 - HTTPS Enforcement
-- Android Backup Disabled
+- Login Lockout Protection
 
 ### SaaS Support
 
 - Multi-Building Architecture
-- White-Label Configuration
-- Client-Specific Branding
+- White-label Configuration
+- Client-specific Branding
 - Remote Configuration
-- Firebase Project Isolation
 
 ---
 
@@ -108,30 +136,33 @@ lib/
 │   ├── services/
 │   ├── utils/
 │   └── widgets/
-├── assets/
 └── main.dart
 ```
 
 ---
 
-# ⚙️ Firebase Configuration
+# 🔥 Firebase Configuration
 
 This repository **does not include Firebase configuration files**.
 
-Every developer or client must configure Firebase using their own Firebase project.
+Each developer or client must configure Firebase using their own Firebase project.
 
-## 1. Create a Firebase Project
+## Step 1
 
-Enable the following services:
+Create a Firebase project.
+
+Enable
 
 - Firebase Authentication
 - Cloud Firestore
-- Firebase Cloud Messaging (FCM)
+- Firebase Cloud Messaging
 - Firebase App Check
 
 ---
 
-## 2. Install FlutterFire CLI
+## Step 2
+
+Install FlutterFire CLI
 
 ```bash
 dart pub global activate flutterfire_cli
@@ -139,13 +170,15 @@ dart pub global activate flutterfire_cli
 
 ---
 
-## 3. Generate Firebase Configuration
+## Step 3
+
+Generate Firebase configuration
 
 ```bash
 flutterfire configure
 ```
 
-This command automatically generates:
+This generates
 
 ```
 lib/firebase_options.dart
@@ -153,7 +186,7 @@ lib/firebase_options.dart
 
 ---
 
-## 4. Download Android Configuration
+## Step 4
 
 Download
 
@@ -161,7 +194,7 @@ Download
 google-services.json
 ```
 
-from the Firebase Console and place it in:
+Place it inside
 
 ```
 android/app/google-services.json
@@ -169,7 +202,9 @@ android/app/google-services.json
 
 ---
 
-## 5. Install Dependencies
+## Step 5
+
+Install dependencies
 
 ```bash
 flutter pub get
@@ -177,7 +212,9 @@ flutter pub get
 
 ---
 
-## 6. Deploy Firestore Rules & Indexes
+## Step 6
+
+Deploy Firestore Rules
 
 ```bash
 firebase deploy --only firestore:rules,firestore:indexes
@@ -187,49 +224,42 @@ firebase deploy --only firestore:rules,firestore:indexes
 
 # 🔒 Files Not Included
 
-The following files are intentionally **excluded** from this repository because they contain project-specific or sensitive information.
+These files are intentionally excluded because they contain sensitive or project-specific information.
 
 | File | Description |
 |------|-------------|
-| `android/app/google-services.json` | Firebase Android configuration |
-| `lib/firebase_options.dart` | Generated using `flutterfire configure` |
-| `android/key.properties` | Android release signing configuration |
-| `*.jks` | Android signing key |
-| `*.keystore` | Android signing key |
-| `.env` | Environment variables |
-| `serviceAccountKey.json` | Firebase Admin SDK credentials |
-
-> Generate or provide your own copies of these files before building the application.
+| android/app/google-services.json | Firebase Android configuration |
+| lib/firebase_options.dart | Generated by FlutterFire CLI |
+| android/key.properties | Android release signing |
+| *.jks | Android signing key |
+| *.keystore | Android signing key |
+| .env | Environment variables |
+| serviceAccountKey.json | Firebase Admin SDK credentials |
 
 ---
 
 # 🚀 Installation
 
-Clone the repository
+Clone
 
 ```bash
 git clone https://github.com/Harsha-B-CSE/Apartment_Management.git
 ```
 
-Navigate to the project
+Open project
 
 ```bash
 cd Apartment_Management
 ```
 
-Clean the project
-
-```bash
-flutter clean
-```
-
 Install dependencies
 
 ```bash
+flutter clean
 flutter pub get
 ```
 
-Run the application
+Run
 
 ```bash
 flutter run
@@ -239,13 +269,13 @@ flutter run
 
 # 📦 Build APK
 
-### Debug
+Debug
 
 ```bash
 flutter build apk --debug
 ```
 
-### Release
+Release
 
 ```bash
 flutter build apk --release
@@ -255,13 +285,13 @@ flutter build apk --release
 
 # ☁️ Firebase Deployment
 
-Deploy Firestore Rules
+Deploy Rules
 
 ```bash
 firebase deploy --only firestore:rules
 ```
 
-Deploy Firestore Indexes
+Deploy Indexes
 
 ```bash
 firebase deploy --only firestore:indexes
@@ -292,22 +322,21 @@ keyAlias=YOUR_KEY_ALIAS
 storeFile=../your-keystore.jks
 ```
 
-> **Never commit** `key.properties`, `.jks`, or `.keystore` files to GitHub.
+> Never commit `key.properties`, `.jks`, or `.keystore` files.
 
 ---
 
 # 🏢 New Client Setup
 
-1. Create a Firebase Project.
-2. Download `google-services.json`.
-3. Copy it to `android/app/`.
-4. Run `flutterfire configure`.
-5. Edit `assets/config/saas_config.json`.
-6. Change the Android package name.
-7. Deploy Firestore Rules and Indexes.
-8. Enable Firebase App Check.
-9. Create an Administrator account.
-10. Build and sign the APK.
+1. Create Firebase Project
+2. Download `google-services.json`
+3. Place it in `android/app/`
+4. Run `flutterfire configure`
+5. Edit `assets/config/saas_config.json`
+6. Deploy Firestore Rules & Indexes
+7. Enable Firebase App Check
+8. Create an Admin user
+9. Build the APK
 
 ---
 
@@ -325,97 +354,21 @@ storeFile=../your-keystore.jks
 
 ---
 
-# 📋 Major Improvements
-
-### Performance
-
-- Hive Local Caching
-- Offline Mode
-- Firestore Pagination
-- Retry Mechanism
-- Dashboard Cache
-- Shimmer Loading
-- Responsive Navigation
-
-### Security
-
-- Firebase App Check
-- Firestore Security Rules
-- Role-Based Authorization
-- Login Lockout
-- Password Reset Rate Limiting
-- Secure Storage
-- HTTPS Enforcement
-
-### SaaS
-
-- Multi-Tenant Architecture
-- White-Label Support
-- Remote Configuration
-- Client Branding
-
----
-
 # 🛡 Security
 
 - Firebase Authentication
 - Firebase App Check
 - Firestore Security Rules
-- Secure Local Storage
-- Network Security Configuration
 - Role-Based Access Control
-- Login Attempt Protection
-- Password Reset Protection
-
----
-
-# 📸 Screenshots
-
-Add screenshots of the application here.
-
-Example:
-
-```
-screenshots/
-├── login.png
-├── admin_dashboard.png
-├── member_dashboard.png
-├── complaints.png
-├── visitors.png
-├── parking.png
-└── notifications.png
-```
-
----
-
-# 🤝 Contributing
-
-1. Fork the repository.
-2. Create a new feature branch.
-
-```bash
-git checkout -b feature-name
-```
-
-3. Commit your changes.
-
-```bash
-git commit -m "Add new feature"
-```
-
-4. Push your branch.
-
-```bash
-git push origin feature-name
-```
-
-5. Open a Pull Request.
+- Secure Storage
+- HTTPS Enforcement
+- Login Lockout Protection
 
 ---
 
 # 📄 License
 
-This project was developed for **educational and demonstration purposes**.
+This project is developed for educational and demonstration purposes.
 
 ---
 
@@ -423,8 +376,6 @@ This project was developed for **educational and demonstration purposes**.
 
 **Harsha B**
 
-- GitHub: https://github.com/Harsha-B-CSE
+GitHub: https://github.com/Harsha-B-CSE
 
----
-
-⭐ **If you found this project helpful, please consider giving it a star on GitHub.**
+⭐ If you found this project useful, please consider giving it a star.
