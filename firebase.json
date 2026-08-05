@@ -1,0 +1,45 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "storage": {
+      "port": 9199
+    },
+    "ui": {
+      "enabled": true,
+      "port": 4000
+    },
+    "singleProjectMode": true
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "apartment-management-4996a",
+          "appId": "1:689622316584:android:9e7514338fb5a22b4ee71d",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "apartment-management-4996a",
+          "configurations": {
+            "android": "1:689622316584:android:9e7514338fb5a22b4ee71d",
+            "ios": "1:689622316584:ios:a9feb84d5b9641764ee71d",
+            "macos": "1:689622316584:ios:a9feb84d5b9641764ee71d",
+            "web": "1:689622316584:web:8e8a91f02c009faf4ee71d",
+            "windows": "1:689622316584:web:84a204b8b65308884ee71d"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "_comment": "SaaS white-label config. Copy this file per client deployment.",
+  "_instructions": "For each new client: change appName, adminEmail, colors. Optionally push to Firestore collection 'saas_config' doc 'main' for remote updates without APK rebuild.",
+
+  "appName": "ApartmentApp",
+  "tagline": "Your home, simplified",
+  "buildingNameDefault": "Building",
+  "adminEmail": "admin@yourbuilding.com",
+  "primaryColorHex": "#1A2B4A",
+  "accentColorHex": "#00BCD4",
+  "allowSelfSignup": true,
+  "supportEmail": "support@yourbuilding.com",
+  "privacyPolicyUrl": "https://yourbuilding.com/privacy",
+
+  "_client_examples": {
+    "Royal Residence": {
+      "appName": "Royal Residence AMS",
+      "tagline": "Luxury living, managed simply",
+      "buildingNameDefault": "Royal Residence",
+      "adminEmail": "admin@royalresidence.com",
+      "primaryColorHex": "#1A2B4A",
+      "accentColorHex": "#B8860B"
+    },
+    "Rameshwaram Apartments": {
+      "appName": "Rameshwaram AMS",
+      "tagline": "Your community, connected",
+      "buildingNameDefault": "Rameshwaram",
+      "adminEmail": "admin@rameshwaram.com",
+      "primaryColorHex": "#1A2B4A",
+      "accentColorHex": "#FF6B35"
+    }
+  }
+}

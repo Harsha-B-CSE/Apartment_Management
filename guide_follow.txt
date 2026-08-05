@@ -1,0 +1,2 @@
+* command for admin creation = flutter run -t lib/tools/admin_creator.dart --dart-define-from-file=config.json
+* command for app run = flutter run --dart-define-from-file=config.json --no-enable-impeller

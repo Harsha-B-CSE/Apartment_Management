@@ -1,0 +1,146 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ==========================================
+    //  GLOBAL PERFORMANCE HELPERS
+    // ==========================================
+    function isAuth() { return request.auth != null; }
+    function uid() { return request.auth.uid; }
+    
+    // Fast single-document transactional lookups with safe existence checks
+    function getBuildingId() {
+      let userDoc = get(/databases/$(database)/documents/users/$(uid()));
+      return userDoc.data.get('buildingId', 'unassigned');
+    }
+    
+    function getUserRole() {
+      let userDoc = get(/databases/$(database)/documents/users/$(uid()));
+      return userDoc.data.get('role', 'member');
+    }
+    
+    function isAdmin() {
+      return isAuth() && getUserRole() == 'admin';
+    }
+
+    function isGuard() {
+      return isAuth() && getUserRole() == 'guard';
+    }
+
+    // ==========================================
+    //  COLLECTION RULES
+    // ==========================================
+
+    // --- USERS COLLECTION ---
+    match /users/{userId} {
+      allow read: if isAuth();
+      allow create: if isAuth() && (uid() == userId || (isAdmin() && request.resource.data.buildingId == getBuildingId()));
+      allow update: if isAuth() && (
+        uid() == userId && 
+        request.resource.data.role == resource.data.role && 
+        request.resource.data.buildingId == resource.data.buildingId
+      ) || isAdmin();
+      allow delete: if isAdmin() && getBuildingId() == resource.data.buildingId;
+    }
+
+    // --- BUILDINGS COLLECTION ---
+    match /buildings/{buildingId} {
+      allow read: if true; 
+      allow update: if isAuth() && (
+        isAdmin() || 
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['totalTenants'])
+      );
+      // Allow building creation if the user is authenticated and claims to be the admin
+      allow create: if isAuth() && request.resource.data.adminUid == uid();
+      allow delete: if isAdmin();
+    }
+
+    // --- SYSTEM AUDIT LEDGER ---
+    match /audit_logs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isAuth();
+      allow update, delete: if false;
+    }
+
+    // --- TENANT RATINGS & FEEDBACK ---
+    match /ratings/{ratingId} {
+      allow read: if isAuth();
+      allow create: if isAuth() 
+        && request.resource.data.buildingId == getBuildingId()
+        && request.resource.data.tenantUid == uid();
+      allow update: if isAuth() && resource.data.tenantUid == uid();
+      allow delete: if isAdmin() || (isAuth() && resource.data.tenantUid == uid());
+    }
+
+    // --- VISITORS COLLECTION ---
+    match /visitors/{visitorId} {
+      allow read: if isAuth() && (isAdmin() || isGuard() || resource.data.memberUid == uid()); 
+      allow create: if isAuth() && request.resource.data.buildingId == getBuildingId();
+      allow update: if isAuth() && (isAdmin() || isGuard() || resource.data.memberUid == uid());
+      allow delete: if isAdmin();
+    }
+
+    // --- PARKING COLLECTION ---
+    match /parking/{parkingId} {
+      allow read: if isAuth();
+      allow create: if isAuth() && request.resource.data.buildingId == getBuildingId();
+      allow update: if isAuth() && (isAdmin() || resource.data.tenantUid == uid());
+      allow delete: if isAdmin();
+    }
+
+    // --- COMPLAINTS COLLECTION ---
+    match /complaints/{complaintId} {
+      allow read: if isAuth();
+      allow create: if isAuth() && request.resource.data.buildingId == getBuildingId();
+      allow update: if isAuth() && (isAdmin() || resource.data.raisedByUid == uid());
+      allow delete: if isAdmin();
+      
+      // --- NESTED COMMENTS SUBCOLLECTION ---
+      match /comments/{commentId} {
+        allow read: if isAuth();
+        allow create: if isAuth();
+        allow update: if isAuth() && resource.data.senderId == uid();
+        allow delete: if isAdmin();
+      }
+    }
+
+    // --- PAYMENTS & LEDGER COLLECTION ---
+    match /payments/{paymentId} {
+      allow read: if isAuth();
+      allow create: if isAuth() && request.resource.data.buildingId == getBuildingId();
+      allow update: if isAuth() && (isAdmin() || resource.data.targetUid == uid());
+      allow delete: if isAdmin();
+    }
+
+    // --- SERVICE REQUESTS COLLECTION ---
+    match /service_requests/{requestId} {
+      allow read: if isAuth();
+      allow create: if isAuth() && request.resource.data.buildingId == getBuildingId();
+      allow update: if isAuth() && (isAdmin() || resource.data.memberUid == uid());
+      allow delete: if isAdmin();
+    }
+
+    // --- SERVICES CATALOG COLLECTION ---
+    match /services/{serviceId} {
+      allow read: if isAuth();
+      allow create, update, delete: if isAdmin();
+    }
+
+    // --- FLATS COLLECTION ---
+    match /flats/{flatId} {
+      allow read: if resource.data.status == 'vacant' || isAuth();
+      allow create, update: if isAuth() && (
+        isAdmin() || 
+        (resource.data.status == 'vacant' && request.resource.data.status == 'occupied')
+      );
+      allow delete: if isAdmin();
+    }
+
+    // --- NOTIFICATIONS COLLECTION ---
+    match /notifications/{notificationId} {
+      allow read: if isAuth();
+      allow create, update: if isAuth();
+      allow delete: if isAdmin();
+    }
+  }
+}
