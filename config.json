@@ -1,0 +1,7 @@
+{
+  "APP_NAME": "Apartment Pro",
+  "TAGLINE": "Managed Living Made Simple",
+  "FIREBASE_DEBUG_TOKEN": "e273cc99-b62f-4113-97a1-c56473b16b8e",
+  "ALLOW_SELF_SIGNUP": true,
+  "PRIMARY_COLOR": "#1A2B4A"
+}
